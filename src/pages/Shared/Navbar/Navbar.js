@@ -1,13 +1,18 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Navbar = () => {
 
+    const {user} = useContext(AuthContext)
 
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/blog">Blog</Link></li>
         <li><Link to='/login'>Login</Link></li>
+        {user?.displayName}
+        <img src={user?.photoURL} alt="" />
     </React.Fragment>
 
   return (
