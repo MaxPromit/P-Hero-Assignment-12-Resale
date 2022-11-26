@@ -44,7 +44,8 @@ const SignUp = () => {
     googleLogin(googleProvider)
     .then(result =>{
         const user = result.user;
-        console.log(user)
+        console.log(user);
+        saveUser(user.displayName, user.email, user.role = 'Buyer')
     })
     .catch(err=> console.error(err))
   }
