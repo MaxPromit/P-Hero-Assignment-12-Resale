@@ -40,7 +40,7 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          console.log(imgData.data.url);
+        //   console.log(imgData.data.url);
 
           if (data.productCatagory) {
             const catagoryName = catagoryInfo.filter(
