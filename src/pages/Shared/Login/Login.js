@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const Login = () => {
     const {register, formState: { errors },handleSubmit} = useForm();
-    const [loginError, setLoginError] = useState('')
-
+    const [loginError, setLoginError] = useState('');
+    const {signIn} = useContext(AuthContext);
+    const navigate = useNavigate()
     const handlerLogin = (data) =>{
-        console.log(data)
+        console.log(data);
+        setLoginError('')
+    signIn(data.email,data.password)
+    .then(result => {
+        const user = result.user;
+        console.log(user)
+        navigate('/')
+    })
+    .catch(err => {
+        setLoginError(err.message)
+        console.error(err)})
     }
     return (
         <div className="flex justify-center items-center h-screen">
@@ -53,7 +66,7 @@ const Login = () => {
               type="submit"
               value="Login"
             />
-            {/* {loginError && <p className="text-red-600">{loginError}</p>} */}
+            {loginError && <p className="text-red-600">{loginError}</p>}
             <p className="text-sm">
               New To Doctor's Portal?{" "}
               <Link className="text-secondary font-semibold" to="/signup">
