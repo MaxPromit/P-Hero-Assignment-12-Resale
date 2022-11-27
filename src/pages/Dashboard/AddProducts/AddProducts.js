@@ -52,6 +52,7 @@ const AddProducts = () => {
             const catagoryProducts = {
               productName: data.productName,
               picture: imgData.data.url,
+              email: user.email,
               location: data.location,
               resalePrice: data.resalePrice,
               originalPrice: data.originalPrice,
@@ -63,6 +64,7 @@ const AddProducts = () => {
               productCatagory: data.productCatagory,
               description: data.description,
               status: "Available",
+              advertised: 'false',
               catagoryId: catagoryId,
             };
             console.log(catagoryProducts);
@@ -108,6 +110,7 @@ const AddProducts = () => {
           </label>
           <input
             type="email"
+            defaultValue={user?.email}
             {...register("email", {
               required: "Email Field Requered",
             })}
