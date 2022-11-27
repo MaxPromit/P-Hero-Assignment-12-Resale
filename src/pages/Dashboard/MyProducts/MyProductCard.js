@@ -1,6 +1,7 @@
 import React from "react";
+import toast from "react-hot-toast";
 
-const MyProductCard = ({ myproduct}) => {
+const MyProductCard = ({ myproduct , refetch}) => {
     const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status,_id} = myproduct;
 
     const handlerAdvirtised = (id) =>{
@@ -12,6 +13,19 @@ const MyProductCard = ({ myproduct}) => {
           console.log(data)
         })
         .catch(err => console.error(err))
+    }
+    const handlerDelete = (id) =>{
+        fetch(`http://localhost:4000/myproducts/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data =>{
+        if(data.deletedCount > 0){
+            toast.success('Deleted Successfully')
+            refetch()
+        }
+        
+    })
     }
   return (
     <div>
@@ -40,7 +54,7 @@ const MyProductCard = ({ myproduct}) => {
           {status === 'Available' && <label onClick={()=> handlerAdvirtised(_id)} className="btn btn-primary btn-sm">
             Advirtised
           </label>}
-          <label className="btn btn-primary btn-sm">
+          <label onClick={()=> handlerDelete(_id)} className="btn btn-primary btn-sm">
             Delete
           </label>
           </div>
