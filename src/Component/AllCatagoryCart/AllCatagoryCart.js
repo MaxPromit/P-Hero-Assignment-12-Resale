@@ -1,6 +1,6 @@
 import React from "react";
 
-const AllCatagoryCart = ({ catagory }) => {
+const AllCatagoryCart = ({ catagory , setBookingInfo}) => {
     const {picture,productName,location,resalePrice,originalPrice,yearsOfUse,sellerName,conditionType,mobileNumber,description,postTime} = catagory
   return (
     <div>
@@ -30,7 +30,9 @@ const AllCatagoryCart = ({ catagory }) => {
          
 
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+          <label onClick={()=> setBookingInfo(catagory)} htmlFor="booking-modal" className="btn btn-primary">
+            Book Now
+          </label>
           </div>
         </div>
       </div>
