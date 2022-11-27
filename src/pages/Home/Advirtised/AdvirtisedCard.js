@@ -1,21 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const MyProductCard = ({ myproduct}) => {
-    const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status,_id} = myproduct;
-
-    const handlerAdvirtised = (id) =>{
-        fetch(`http://localhost:4000/advirtised/${id}`, {
-        method: "PUT",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-        })
-        .catch(err => console.error(err))
-    }
-  return (
-    <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+const AdvirtisedCard = ({add}) => {
+    const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status} = add;
+    return (
+        <div>
+             <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img src={picture} alt="Shoes" />
         </figure>
@@ -37,17 +26,14 @@ const MyProductCard = ({ myproduct}) => {
          
 
           <div className="card-actions justify-between">
-          {status === 'Available' && <label onClick={()=> handlerAdvirtised(_id)} className="btn btn-primary btn-sm">
-            Advirtised
-          </label>}
           <label className="btn btn-primary btn-sm">
-            Delete
+            Book
           </label>
           </div>
         </div>
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default MyProductCard;
+export default AdvirtisedCard;
