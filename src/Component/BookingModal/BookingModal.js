@@ -4,9 +4,19 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 
 const BookingModal = ({ bookingInfo, setBookingInfo }) => {
-  const { productName, resalePrice } = bookingInfo;
+  const { productName, resalePrice , _id} = bookingInfo;
   const { user } = useContext(AuthContext);
 
+  const handlerStatusChange = (id) =>{
+    fetch(`http://localhost:4000/productStatusUpdate/${id}`, {
+        method: "PUT",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+        })
+        .catch(err => console.error(err))
+  }
   const handlerBooking = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -36,8 +46,8 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
       .then((data) => {
         if (data.acknowledged) {
             // setBookingInfo('')
+            console.log('data', data)
           toast.success("Booking Added");
-          
         }
         else{
             // setBookingInfo('')
@@ -98,7 +108,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
               className="input w-full input-bordered"
             />
             <br />
-            <input type="submit" value="Submit" className="btn w-full" />
+            <input onClick={()=> handlerStatusChange(_id)} type="submit" value="Submit" className="btn w-full" />
           </form>
         </div>
       </div>

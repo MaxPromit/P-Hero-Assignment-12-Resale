@@ -1,8 +1,8 @@
 import React from "react";
 
-const AllCatagoryCart = ({ catagory , setBookingInfo}) => {
-    const {picture,productName,location,resalePrice,originalPrice,yearsOfUse,sellerName,conditionType,mobileNumber,description,postTime, _id} = catagory;
-    console.log('iddd',_id);
+const MyProductCard = ({ myproduct}) => {
+    const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status} = myproduct;
+
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -23,16 +23,15 @@ const AllCatagoryCart = ({ catagory , setBookingInfo}) => {
 
           
           <p className="text-lg">Seller Name: {sellerName}</p>
-          <p className="text-lg">Mobile: {mobileNumber}</p>
-   
-         
-          <p className="text-lg">Year Of Uses: {yearsOfUse}</p>
-          <p className="text-lg">Post Time: {postTime}</p>
+          <p>Status: {status}</p>
          
 
-          <div className="card-actions justify-end">
-          <label onClick={()=> setBookingInfo(catagory)} htmlFor="booking-modal" className="btn btn-primary">
-            Book Now
+          <div className="card-actions justify-between">
+          {status === 'Available' && <label className="btn btn-primary btn-sm">
+            Advirtised
+          </label>}
+          <label className="btn btn-primary btn-sm">
+            Delete
           </label>
           </div>
         </div>
@@ -41,4 +40,4 @@ const AllCatagoryCart = ({ catagory , setBookingInfo}) => {
   );
 };
 
-export default AllCatagoryCart;
+export default MyProductCard;
