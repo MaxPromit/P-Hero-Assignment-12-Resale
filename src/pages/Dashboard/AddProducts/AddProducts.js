@@ -68,6 +68,7 @@ const AddProducts = () => {
               status: "Available",
               advertised: 'false',
               catagoryId: catagoryId,
+              sellerStatus: 'Unverified'
             };
             console.log(catagoryProducts);
             // save the doctors info to the dataBase,,,,

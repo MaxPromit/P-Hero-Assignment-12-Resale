@@ -12,7 +12,7 @@ const AllSellers = () => {
       return data;
     },
   });
-  console.log(allsellers);
+  console.log('allseller',allsellers);
 
   const handlerSellerDelete = (id) =>{
     fetch(`http://localhost:4000/sellerdelete/${id}`, {
@@ -27,6 +27,16 @@ const AllSellers = () => {
         
     })
   }
+  const handlerSellerVerify = (email) =>{
+    fetch(`http://localhost:4000/sellerverify/${email}`,{
+      method: 'PUT'
+    })
+    .then(res => res.json())
+    .then(data =>{
+      console.log(data)
+    })
+    
+  }
   return (
     <div>
       <h2 className="text-3xl text-center my-6">All Seller</h2>
@@ -39,6 +49,7 @@ const AllSellers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Status</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -46,6 +57,7 @@ const AllSellers = () => {
                 <td>{1 + i}</td>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
+                <td><button onClick={()=>handlerSellerVerify(seller.email)} className="btn btn-success btn-sm">Verify</button></td>
                 <td><button onClick={()=>handlerSellerDelete(seller._id)} className="btn btn-primary btn-sm">Delete</button></td>
               </tr>))}
             </tbody>

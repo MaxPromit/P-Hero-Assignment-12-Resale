@@ -15,6 +15,7 @@ const AllCatagoryCart = ({ catagory, setBookingInfo }) => {
     description,
     postTime,
     _id,
+    sellerStatus,email
   } = catagory;
   console.log("iddd", _id);
 
@@ -58,7 +59,7 @@ const AllCatagoryCart = ({ catagory, setBookingInfo }) => {
             <p className="text-lg">Condition: {conditionType}</p>
           </div>
 
-          <p className="text-lg">Seller Name: {sellerName}</p>
+         {sellerStatus === 'Verified' ? <p className="text-lg">Seller Name: {sellerName} <span className="badge bg-blue-800">Tick</span> </p> : <p className="text-lg">Seller Name: {sellerName}</p>}
           <p className="text-lg">Mobile: {mobileNumber}</p>
 
           <p className="text-lg">Year Of Uses: {yearsOfUse}</p>
