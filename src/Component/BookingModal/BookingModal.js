@@ -33,7 +33,8 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         phone,
         price,
         picture,
-        location
+        location,
+        catagoryId: _id
       };
       console.log(booking);
       fetch("http://localhost:4000/bookings", {
@@ -76,7 +77,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
             <input
               name="price"
               type="text"
-              value={`Price:$ ${resalePrice}`}
+              value={`${resalePrice}`}
               disabled
               className="input w-full input-bordered"
             />

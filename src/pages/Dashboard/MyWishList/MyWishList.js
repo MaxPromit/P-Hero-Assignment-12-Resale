@@ -11,7 +11,7 @@ const MyWishList = () => {
           return data;
         },
       });
-      console.log(wishlists)
+      console.log('wishid',wishlists)
      
     return (
         <div>

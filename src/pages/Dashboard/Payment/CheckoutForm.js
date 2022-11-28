@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStripe, CardElement, useElements, } from "@stripe/react-stripe-js";
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({booking}) => {
 
@@ -9,8 +10,7 @@ const CheckoutForm = ({booking}) => {
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
 
-  const {price ,productName, email, _id } = booking;
- const newprice = (price.slice(7,14))
+  const {price ,productName, email, _id, catagoryId } = booking;
 
     const stripe = useStripe();
     const elements = useElements();
@@ -24,11 +24,11 @@ const CheckoutForm = ({booking}) => {
           "Content-Type": "application/json",
           // authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify({ newprice }),
+        body: JSON.stringify({ price }),
       })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret));
-    }, [newprice]);
+    }, [price]);
 
     const handleSubmit = async(event)=>{
       event.preventDefault();
@@ -99,6 +99,20 @@ const CheckoutForm = ({booking}) => {
 
   
     }
+
+    const handlerPayAfterDelete = (id) =>{
+      console.log('pay',id);
+      fetch(`http://localhost:4000/myproducts/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data =>{
+        if(data.deletedCount > 0){
+            toast.success('Item Sold SuccessFully')
+        }
+        
+    })
+    }
     return (
        <>
         <form onSubmit={handleSubmit}>
@@ -119,6 +133,7 @@ const CheckoutForm = ({booking}) => {
           }}
         />
         <button
+        onClick={()=>handlerPayAfterDelete(catagoryId)}
           className="btn btn-sm btn-secondary mt-3"
           type="submit"
           disabled={!stripe || processing ||!clientSecret}

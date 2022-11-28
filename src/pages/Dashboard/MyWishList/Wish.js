@@ -8,7 +8,7 @@ const Wish = ({wish}) => {
     console.log('dd', wish.info)
     const allwish = wish.info
     console.log('all wish', allwish);
-    const {productName,mobileNumber,resalePrice,picture,location} = allwish
+    const {productName,mobileNumber,resalePrice,picture,location,_id} = allwish
 
     const handlerWishlistSubmit = () =>{
       const booking = {
@@ -18,7 +18,8 @@ const Wish = ({wish}) => {
         picture,
         location,
         buyerName: user?.displayName,
-        email: user?.email
+        email: user?.email,
+        catagoryId: _id
       }
 
       fetch("http://localhost:4000/bookings", {
