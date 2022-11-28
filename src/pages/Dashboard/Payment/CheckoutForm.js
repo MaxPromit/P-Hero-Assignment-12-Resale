@@ -18,7 +18,7 @@ const CheckoutForm = ({booking}) => {
 
     useEffect(() => {
       // Create PaymentIntent as soon as the page loads
-      fetch("http://localhost:4000/create-payment-intent", {
+      fetch("https://reseal-bike-server.vercel.app/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const CheckoutForm = ({booking}) => {
         bookingId: _id,
       };
       // send data to mongodb
-      fetch("http://localhost:4000/payments", {
+      fetch("https://reseal-bike-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const CheckoutForm = ({booking}) => {
 
     const handlerPayAfterDelete = (id) =>{
       console.log('pay',id);
-      fetch(`http://localhost:4000/myproducts/${id}`, {
+      fetch(`https://reseal-bike-server.vercel.app/myproducts/${id}`, {
         method: 'DELETE',
     })
     .then(res => res.json())

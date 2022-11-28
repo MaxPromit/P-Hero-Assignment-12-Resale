@@ -7,7 +7,7 @@ const Advirtised = () => {
   const [advirtised, setAdvirtised] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/advirtisedtrue")
+    fetch("https://reseal-bike-server.vercel.app/advirtisedtrue")
       .then((res) => res.json())
       .then((data) => setAdvirtised(data));
   }, []);

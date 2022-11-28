@@ -5,7 +5,7 @@ const MyProductCard = ({ myproduct , refetch}) => {
     const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status,_id} = myproduct;
 
     const handlerAdvirtised = (id) =>{
-        fetch(`http://localhost:4000/advirtised/${id}`, {
+        fetch(`https://reseal-bike-server.vercel.app/advirtised/${id}`, {
         method: "PUT",
       })
         .then((res) => res.json())
@@ -15,7 +15,7 @@ const MyProductCard = ({ myproduct , refetch}) => {
         .catch(err => console.error(err))
     }
     const handlerDelete = (id) =>{
-        fetch(`http://localhost:4000/myproducts/${id}`, {
+        fetch(`https://reseal-bike-server.vercel.app/myproducts/${id}`, {
         method: 'DELETE',
     })
     .then(res => res.json())

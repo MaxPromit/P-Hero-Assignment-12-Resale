@@ -22,7 +22,7 @@ const Wish = ({wish}) => {
         catagoryId: _id
       }
 
-      fetch("http://localhost:4000/bookings", {
+      fetch("https://reseal-bike-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
