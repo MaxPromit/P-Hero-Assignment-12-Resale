@@ -15,6 +15,11 @@ Its a React Website. We Use many tailwind componet lybrais like Daiysu Yi, Merak
 https://resale-bike-2acda.web.app
 
 
+# User Admin Information
+
+adminEmail: oneplus@t.com
+
+adminPassword: 12345A@
 
 
 
