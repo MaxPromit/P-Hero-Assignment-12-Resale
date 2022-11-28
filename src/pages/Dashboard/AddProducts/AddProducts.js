@@ -92,8 +92,8 @@ const AddProducts = () => {
       });
   };
   return (
-    <div className="w-80">
-      <h3 className="text-3xl">Add A Product</h3>
+    <div className="w-80 mx-auto">
+      <h3 className="text-3xl font-semibold text-center">Add A Product</h3>
       <form onSubmit={handleSubmit(handlerAddProduct)}>
         <div className="form-control w-full">
           <label className="label">

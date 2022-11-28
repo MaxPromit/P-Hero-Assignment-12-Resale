@@ -12,6 +12,7 @@ import MyWishList from "../../Dashboard/MyWishList/MyWishList";
 import Blog from "../../Home/Blog/Blog";
 import Home from "../../Home/Home";
 import ProductCatagories from "../../Home/ProductCatagories/ProductCatagories";
+import DisplayError from "../../Shared/DisplayError/DisplayError";
 import Login from "../../Shared/Login/Login";
 import SignUp from "../../Shared/Login/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -50,19 +52,21 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><AllCatagory></AllCatagory></PrivateRoute>,
                 loader: ({params})=> fetch(`http://localhost:4000/catagory/${params.id}`)
             },
-            {
-                path: '/dashboard',
-                element: <Dashboard></Dashboard>
-            }
+            
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
-                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myorders',
+                element: <MyOrders></MyOrders>
             },
             {
                 path: '/dashboard/mywishlist',
