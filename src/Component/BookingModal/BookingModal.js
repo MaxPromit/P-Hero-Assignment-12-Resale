@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 
 const BookingModal = ({ bookingInfo, setBookingInfo }) => {
-  const { productName, resalePrice , _id} = bookingInfo;
+  const { productName, resalePrice , _id, picture} = bookingInfo;
   const { user } = useContext(AuthContext);
 
   const handlerStatusChange = (id) =>{
@@ -32,6 +32,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         email,
         phone,
         price,
+        picture,
         location
       };
       console.log(booking);

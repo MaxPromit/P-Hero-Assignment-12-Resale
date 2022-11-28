@@ -9,6 +9,7 @@ import DashboardLayout from "../../Dashboard/DashboardLayout/DashboardLayout";
 import MyOrders from "../../Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Dashboard/MyProducts/MyProducts";
 import MyWishList from "../../Dashboard/MyWishList/MyWishList";
+import Payment from "../../Dashboard/Payment/Payment";
 import Blog from "../../Home/Blog/Blog";
 import Home from "../../Home/Home";
 import ProductCatagories from "../../Home/ProductCatagories/ProductCatagories";
@@ -87,6 +88,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyers',
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params})=> fetch(`http://localhost:4000/bookings/${params.id}`)
             },
         ]
     }
