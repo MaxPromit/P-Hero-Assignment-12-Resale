@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -6,20 +6,21 @@ import SingleCatagory from "./SingleCatagory";
 
 const ProductCatagories = () => {
   const [allCatagories, setAllCatagories] = useState([]);
-  axios.get('http://localhost:4000/catagories')
-  .then(res =>{
-    setAllCatagories(res.data)
-    // console.log('res',res.data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+  // axios.get('http://localhost:4000/catagories')
+  // .then(res =>{
+  //   setAllCatagories(res.data)
+  //   // console.log('res',res.data)
+  // })
+  // .catch(err => {
+  //   console.log(err)
+  // })
 
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/catagories")
-  //     .then((res) => res.json())
-  //     .then((data) => setAllCatagories(data));
-  // }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/catagories")
+      .then((res) => res.json())
+      .then((data) => setAllCatagories(data));
+  }, []);
 
   // console.log(allCatagories);
   return (
