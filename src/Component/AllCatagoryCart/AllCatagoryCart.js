@@ -21,13 +21,13 @@ const AllCatagoryCart = ({ catagory, setBookingInfo }) => {
 
   const handlerWishlist = (id) => {
     console.log(id);
-    fetch(`https://reseal-bike-server.vercel.app/wishlist/${id}`)
+    fetch(`http://localhost:4000/wishlist/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const wishlist = data[0];
 
         // post
-        fetch(`https://reseal-bike-server.vercel.app/wishlist`, {
+        fetch(`http://localhost:4000/wishlist`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

@@ -8,7 +8,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
   const { user } = useContext(AuthContext);
 
   const handlerStatusChange = (id) =>{
-    fetch(`https://reseal-bike-server.vercel.app/productStatusUpdate/${id}`, {
+    fetch(`http://localhost:4000/productStatusUpdate/${id}`, {
         method: "PUT",
       })
         .then((res) => res.json())
@@ -37,7 +37,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         catagoryId: _id
       };
       console.log(booking);
-      fetch("https://reseal-bike-server.vercel.app/bookings", {
+      fetch("http://localhost:4000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

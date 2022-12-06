@@ -6,7 +6,7 @@ const MyOrders = () => {
   const { data: allbookings = [] } = useQuery({
     queryKey: ["allbookings"],
     queryFn: async () => {
-      const res = await fetch("https://reseal-bike-server.vercel.app/allbookings");
+      const res = await fetch("http://localhost:4000/allbookings");
       const data = await res.json();
       return data;
     },

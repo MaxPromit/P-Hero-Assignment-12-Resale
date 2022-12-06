@@ -22,7 +22,7 @@ const AddProducts = () => {
   const { data: catagoryInfo = [] } = useQuery({
     queryKey: ["brandCatagories"],
     queryFn: async () => {
-      const res = await fetch("https://reseal-bike-server.vercel.app/brandCatagories");
+      const res = await fetch("http://localhost:4000/brandCatagories");
       const data = await res.json();
       return data;
     },
@@ -72,7 +72,7 @@ const AddProducts = () => {
             };
             console.log(catagoryProducts);
             // save the doctors info to the dataBase,,,,
-            fetch("https://reseal-bike-server.vercel.app/catagoriesProducts", {
+            fetch("http://localhost:4000/catagoriesProducts", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

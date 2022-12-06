@@ -7,7 +7,7 @@ const AllSellers = () => {
   const { data: allsellers = [],refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("https://reseal-bike-server.vercel.app/allsellers");
+      const res = await fetch("http://localhost:4000/allsellers");
       const data = await res.json();
       return data;
     },
@@ -15,7 +15,7 @@ const AllSellers = () => {
   console.log('allseller',allsellers);
 
   const handlerSellerDelete = (id) =>{
-    fetch(`https://reseal-bike-server.vercel.app/sellerdelete/${id}`, {
+    fetch(`http://localhost:4000/sellerdelete/${id}`, {
         method: 'DELETE',
     })
     .then(res => res.json())
@@ -28,7 +28,7 @@ const AllSellers = () => {
     })
   }
   const handlerSellerVerify = (email) =>{
-    fetch(`https://reseal-bike-server.vercel.app/sellerverify/${email}`,{
+    fetch(`http://localhost:4000/sellerverify/${email}`,{
       method: 'PUT'
     })
     .then(res => res.json())
@@ -57,7 +57,7 @@ const AllSellers = () => {
                 <td>{1 + i}</td>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
-                <td><button onClick={()=>handlerSellerVerify(seller.email)} className="btn btn-success btn-sm">Verify</button></td>
+                <td>{seller.sellerStatus === 'Verified' ?<p>Varified</p>:  <button onClick={()=>handlerSellerVerify(seller.email)} className="btn btn-success btn-sm">Verify</button>}</td>
                 <td><button onClick={()=>handlerSellerDelete(seller._id)} className="btn btn-primary btn-sm">Delete</button></td>
               </tr>))}
             </tbody>

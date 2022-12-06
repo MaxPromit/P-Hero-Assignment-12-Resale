@@ -6,7 +6,7 @@ const MyWishList = () => {
     const { data: wishlists = [] } = useQuery({
         queryKey: ["allwishlist"],
         queryFn: async () => {
-          const res = await fetch('https://reseal-bike-server.vercel.app/allwishlist');
+          const res = await fetch('http://localhost:4000/allwishlist');
           const data = await res.json();
           return data;
         },

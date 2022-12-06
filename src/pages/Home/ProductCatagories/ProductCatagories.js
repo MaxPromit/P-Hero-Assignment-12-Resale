@@ -6,7 +6,7 @@ import SingleCatagory from "./SingleCatagory";
 
 const ProductCatagories = () => {
   const [allCatagories, setAllCatagories] = useState([]);
-  // axios.get('https://reseal-bike-server.vercel.app/catagories')
+  // axios.get('http://localhost:4000/catagories')
   // .then(res =>{
   //   setAllCatagories(res.data)
   //   // console.log('res',res.data)
@@ -19,7 +19,7 @@ const ProductCatagories = () => {
   // Humble Request ... Vaiya Ami Axios Onek Koste Apply korci,,exam er chap cilo vaiya somoy paici 3din . jag ga vaiya tobe ami apply korte parci..but ai somoy amar net onek slow thakar dorun error discilo vaiya tai alternavite useeffect dia dici,,Vaiya apner net asa kori jokhon dekben token inshallah valo thakbe ,, apni vaiya aktu kosto kore useeffect comment kore axios ta aktu check koriyen vaiya,and hoile number diyen vaiya,.. Please ,, last moment a aci vaiya,, r hoito ba kono din request kora hobe na..valo thakben vai...
 
   useEffect(() => {
-    fetch("https://reseal-bike-server.vercel.app/catagories")
+    fetch("http://localhost:4000/catagories")
       .then((res) => res.json())
       .then((data) => setAllCatagories(data));
   }, []);

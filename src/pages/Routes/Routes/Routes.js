@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
             {
                 path: '/catagory/:id',
                 element: <PrivateRoute><AllCatagory></AllCatagory></PrivateRoute>,
-                loader: ({params})=> fetch(`https://reseal-bike-server.vercel.app/catagory/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:4000/catagory/${params.id}`)
             },
             
         ]
@@ -92,7 +92,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params})=> fetch(`https://reseal-bike-server.vercel.app/bookings/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:4000/bookings/${params.id}`)
             },
         ]
     }
