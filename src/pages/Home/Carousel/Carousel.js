@@ -5,7 +5,7 @@ const Carousel = () => {
     <div className="carousel w-full">
       <div id="slide1" className="carousel-item relative w-full">
         <img
-          src="https://i.ibb.co/9yS6Snf/motorcycle-in-price-banner2.jpg"
+          src="https://i.ibb.co/djTNk7j/purple-ducati-monster-s4r-motorcycle-website-header.jpg"
           className="w-full"
           alt="banner"
         />
@@ -38,3 +38,6 @@ const Carousel = () => {
 };
 
 export default Carousel;
+
+
+// https://i.ibb.co/9yS6Snf/motorcycle-in-price-banner2.jpg

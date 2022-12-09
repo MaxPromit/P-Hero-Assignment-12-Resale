@@ -7,7 +7,7 @@ const Blog = () => {
         Some Burning Questions
       </h2>
       <div className="text-center">
-        <div className="border border-red-600 w-full my-3">
+        <div className="border p-3 w-full my-3">
           <h3 className="text-2xl mb-3">
             1.What are the different ways to manage a state in a React
             application?
@@ -23,7 +23,7 @@ const Blog = () => {
             request states like loading, fetching, and error.
           </p>
         </div>
-        <div className="border border-red-600 w-full my-3">
+        <div className="border p-3 w-full my-3">
           <h3 className="text-2xl mb-3">
             2. How does prototypical inheritance work?
           </h3>
@@ -35,7 +35,7 @@ const Blog = () => {
             object, we use Object. getPrototypeOf and Object
           </p>
         </div>
-        <div className="border border-red-600 w-full my-3">
+        <div className="border p-3 w-full my-3">
           <h3 className="text-2xl mb-3">
             3. What is a unit test? Why should we write unit tests?
           </h3>
@@ -47,7 +47,7 @@ const Blog = () => {
             difficult to find in later testing stages.
           </p>
         </div>
-        <div className="border border-red-600 w-full my-3">
+        <div className="border p-3 w-full my-3">
           <h3 className="text-2xl mb-3">4.React vs. Angular vs. Vue?</h3>
           <p>
             Vue provides higher customizability and hence is easier to learn

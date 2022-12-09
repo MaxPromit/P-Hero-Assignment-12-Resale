@@ -7,7 +7,7 @@ const Advirtised = () => {
   const [advirtised, setAdvirtised] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/advirtisedtrue")
+    fetch("https://reseal-bike-server.vercel.app/advirtisedtrue")
       .then((res) => res.json())
       .then((data) => setAdvirtised(data));
   }, []);
@@ -16,7 +16,7 @@ const Advirtised = () => {
       {advirtised.length === 0 ? null : <div>
         <h2 className="text-3xl font-semibold my-16 text-center">Advirtised</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
           {advirtised.map((add) => (
             <AdvirtisedCard add={add} key={add._id}></AdvirtisedCard>
           ))}

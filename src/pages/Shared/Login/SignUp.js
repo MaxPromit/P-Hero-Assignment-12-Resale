@@ -52,7 +52,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role) =>{
     const user = {name, email, role};
-    fetch('http://localhost:4000/users', {
+    fetch('https://reseal-bike-server.vercel.app/users', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

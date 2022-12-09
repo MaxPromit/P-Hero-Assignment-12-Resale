@@ -1,11 +1,12 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const MyProductCard = ({ myproduct , refetch}) => {
-    const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,status,_id} = myproduct;
+    const {picture,productName,location,resalePrice,originalPrice,sellerName,conditionType,description,sellerStatus,status,_id,mobileNumber,yearsOfUse} = myproduct;
 
     const handlerAdvirtised = (id) =>{
-        fetch(`http://localhost:4000/advirtised/${id}`, {
+        fetch(`https://reseal-bike-server.vercel.app/advirtised/${id}`, {
         method: "PUT",
       })
         .then((res) => res.json())
@@ -15,7 +16,7 @@ const MyProductCard = ({ myproduct , refetch}) => {
         .catch(err => console.error(err))
     }
     const handlerDelete = (id) =>{
-        fetch(`http://localhost:4000/myproducts/${id}`, {
+        fetch(`https://reseal-bike-server.vercel.app/myproducts/${id}`, {
         method: 'DELETE',
     })
     .then(res => res.json())
@@ -29,24 +30,35 @@ const MyProductCard = ({ myproduct , refetch}) => {
     }
   return (
     <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
-        <figure>
-          <img src={picture} alt="Shoes" />
+      <div className="card card-compact w-96 bg-white text-black shadow-xl">
+      <figure className="">
+          <img className="object-cover w-96 h-64" src={picture} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{productName}</h2>
-          <p className="text-lg font-medium">{description}</p>
-          <div className="flex justify-between text-lg ">
-          <p>Original Price: ${originalPrice}</p>
-          <p>Reseal Price: ${resalePrice}</p>
+        <div className="flex justify-around">
+            <h2 className="card-title">{productName}</h2>
+            <p className='flex justify-end font-bold items-center'>{status}</p>
           </div>
-          <div className="flex justify-between text-lg ">
-          <p>Location: {location}</p>
-          <p className="text-lg">Condition: {conditionType}</p>
-          </div>
-
+          {sellerStatus === 'Verified' ? <p className="text-base font-medium relative">Seller Name: {sellerName}<FaRegCheckCircle className="inline absolute bottom-3 text-blue-800"/> </p> : <p className="font-medium text-base">Seller Name: {sellerName}</p>}
           
-          <p className="text-lg">Seller Name: {sellerName}</p>
+          <div className="text-lg ">
+            <p>
+              <span className="font-bold text-base">Product Original Price</span>: $ <span className="font-bold">{originalPrice}</span>
+            </p>
+            <p>
+            <span className="font-bold text-base">Product Resale Price</span>: $ <span className="font-bold">{resalePrice}</span>
+            </p>
+          </div>
+          <div className="flex justify-around font-medium text-base ">
+            <p>Location: {location}</p>
+            <p>Condition: {conditionType}</p>
+          </div>
+       
+
+          <div className="card-actions justify-end ">
+          <p className="text-base font-medium">Mobile: {mobileNumber}</p> 
+          <p className="text-base font-medium">Year Of Use: {yearsOfUse}</p> 
+          </div>
           <p>Status: {status}</p>
          
 

@@ -6,6 +6,7 @@ import useBuyer from "../../../Hooks/useBuyer";
 import useSeller from "../../../Hooks/useSeller";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
+import './dashboard.css'
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -24,38 +25,38 @@ const DashboardLayout = () => {
         <div className="drawer-content">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side mr-6">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 text-base-content bg-slate-400 lg:bg-slate-100 md:bg-slate-400">
-            <li>
+          <ul className="menu p-4 w-80 text-base-content dashboard">
+            <li className="mb-3">
               <Link to='/dashboard'>Dashboard</Link>
             </li>
             {isBuyer && (
               <>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/myorders">My Orders</Link>
                 </li>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/mywishlist">My WishList</Link>
                 </li>
               </>
             )}
             {isSeller && (
               <>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/addproducts">Add A Products</Link>
                 </li>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/myproducts">My Products</Link>
                 </li>
               </>
             )}
             {isAdmin && (
               <>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/allsellers">All Sellers</Link>
                 </li>
-                <li>
+                <li  className="mb-3">
                   <Link to="/dashboard/allbuyers">All Buyers</Link>
                 </li>
               </>

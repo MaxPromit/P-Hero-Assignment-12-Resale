@@ -13,7 +13,7 @@ const AddProducts = () => {
     handleSubmit,
   } = useForm();
   const imageHostKey = process.env.REACT_APP_IMGBB_KEY;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const date = new Date();
   const { user } = useContext(AuthContext);
   // console.log(user)
@@ -22,7 +22,7 @@ const AddProducts = () => {
   const { data: catagoryInfo = [] } = useQuery({
     queryKey: ["brandCatagories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:4000/brandCatagories");
+      const res = await fetch("https://reseal-bike-server.vercel.app/brandCatagories");
       const data = await res.json();
       return data;
     },
@@ -42,7 +42,7 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-        //   console.log(imgData.data.url);
+          //   console.log(imgData.data.url);
 
           if (data.productCatagory) {
             const catagoryName = catagoryInfo.filter(
@@ -66,13 +66,13 @@ const AddProducts = () => {
               productCatagory: data.productCatagory,
               description: data.description,
               status: "Available",
-              advertised: 'false',
+              advertised: "false",
               catagoryId: catagoryId,
-              sellerStatus: 'Unverified'
+              sellerStatus: "Unverified",
             };
             console.log(catagoryProducts);
             // save the doctors info to the dataBase,,,,
-            fetch("http://localhost:4000/catagoriesProducts", {
+            fetch("https://reseal-bike-server.vercel.app/catagoriesProducts", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -83,9 +83,8 @@ const AddProducts = () => {
               .then((result) => {
                 if (result.acknowledged) {
                   console.log(result);
-                  navigate('/dashboard/myproducts')
+                  navigate("/dashboard/myproducts");
                   toast.success(`${data.productName} is added successfully`);
-                  
                 }
               });
           }
@@ -93,151 +92,173 @@ const AddProducts = () => {
       });
   };
   return (
-    <div className="w-80 mx-auto">
+    <div className="w-full mx-auto">
       <h3 className="text-3xl font-semibold text-center">Add A Product</h3>
-      <form onSubmit={handleSubmit(handlerAddProduct)}>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Product Name</span>
-          </label>
-          <input
-            type="text"
-            {...register("productName", {
-              required: "Name Field Required",
-            })}
-            className="input input-bordered w-full "
-          />
-          {errors.name && <p className="text-red-600">{errors.name.message}</p>}
-        </div>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            defaultValue={user?.email}
-            {...register("email", {
-              required: "Email Field Requered",
-            })}
-            className="input input-bordered w-full "
-          />
-        </div>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Original Price</span>
-          </label>
-          <input
-            type="number"
-            {...register("originalPrice", {
-              required: "original Field Requered",
-            })}
-            className="input input-bordered w-full "
-          />
-        </div>
-        <label className="label">
-          <span className="label-text">Product Catagory</span>
-        </label>
-        <select
-          {...register("productCatagory", {
-            required: "productcatagory Field Required",
-          })}
-          className="select select-bordered w-full max-w-xs mb-5"
-        >
-          {catagoryInfo.map((catagory) => (
-            <option key={catagory._id}>{catagory.brand}</option>
-          ))}
-        </select>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Recell Price</span>
-          </label>
-          <input
-            type="number"
-            {...register("resalePrice", {
-              required: "recell Field Requered",
-            })}
-            className="input input-bordered w-full "
-          />
-        </div>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Years Of Use</span>
-          </label>
-          <input
-            type="number"
-            {...register("yearsOfUse", {
-              required: "yearsOfUse Field Requered",
-            })}
-            className="input input-bordered w-full "
-          />
-        </div>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">Mobile Number</span>
-          </label>
-          <input
-            type="number"
-            {...register("mobileNumber", {
-              required: "mobileNumber Field Requered",
-            })}
-            className="input input-bordered w-full "
-          />
-        </div>
-        <div className="form-control w-full ">
-          <label className="label">
-            <span className="label-text">Location</span>
-          </label>
-          <select
-            className="my-3"
-            {...register("location", {
-              required: "location Field Required",
-            })}
-          >
-            <option value="Dhaka">Dhaka</option>
-            <option value="Chittagong">Chittagong</option>
-            <option value="Gopalgonj">Gopalgonj</option>
-          </select>
-          <label className="label">
-            <span className="label-text">Condition Type</span>
-          </label>
-          <select
-            className="my-3"
-            {...register("conditionType", { required: true })}
-          >
-            <option value="Excellent">Excellent</option>
-            <option value="Good">Good</option>
-            <option value="Fair">Fair</option>
-          </select>
-          <div className="form-control w-full mb-5">
+      <form className="" onSubmit={handleSubmit(handlerAddProduct)}>
+        <div className="grid grid-cols-2 gap-6 w-full">
+          <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Photo</span>
+              <span className="label-text">Product Name</span>
             </label>
             <input
-              type="file"
-              {...register("image", {
+              type="text"
+              {...register("productName", {
                 required: "Name Field Required",
               })}
               className="input input-bordered w-full "
             />
-            {errors.image && (
-              <p className="text-red-600">{errors.image.message}</p>
+            {errors.name && (
+              <p className="text-red-600">{errors.name.message}</p>
             )}
           </div>
-          <div>
+          <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Description</span>
+              <span className="label-text">Email</span>
             </label>
-            <textarea
-              className="w-full"
-              {...register("description", { required: "Message Needed" })}
+            <input
+              type="email"
+              defaultValue={user?.email}
+              readOnly
+              {...register("email", {
+                required: "Email Field Requered",
+              })}
+              className="input input-bordered w-full "
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Original Price</span>
+            </label>
+            <input
+              type="number"
+              {...register("originalPrice", {
+                required: "original Field Requered",
+              })}
+              className="input input-bordered w-full "
             />
           </div>
 
-          <input
-            className="btn btn-accent w-full"
-            type="submit"
-            value="Add Product"
-          />
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Years Of Use</span>
+            </label>
+            <input
+              type="number"
+              {...register("yearsOfUse", {
+                required: "yearsOfUse Field Requered",
+              })}
+              className="input input-bordered w-full "
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-6">
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Recell Price</span>
+            </label>
+            <input
+              type="number"
+              {...register("resalePrice", {
+                required: "recell Field Requered",
+              })}
+              className="input input-bordered w-full "
+            />
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Mobile Number</span>
+            </label>
+            <input
+              type="number"
+              {...register("mobileNumber", {
+                required: "mobileNumber Field Requered",
+              })}
+              className="input input-bordered w-full "
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="label">
+              <span className="label-text">Product Catagory</span>
+            </label>
+            <select
+              {...register("productCatagory", {
+                required: "productcatagory Field Required",
+              })}
+              className="select select-bordered w-full max-w-xs mb-5"
+            >
+              {catagoryInfo.map((catagory) => (
+                <option key={catagory._id}>{catagory.brand}</option>
+              ))}
+            </select>
+            <div
+              className="form-control w-72 grid grid-cols-2
+         "
+            >
+              <label className="label">
+                <span className="label-text">Location</span>
+              </label>
+              <select
+                className="my-3"
+                {...register("location", {
+                  required: "location Field Required",
+                })}
+              >
+                <option value="Dhaka">Dhaka</option>
+                <option value="Chittagong">Chittagong</option>
+                <option value="Gopalgonj">Gopalgonj</option>
+              </select>
+              <label className="label">
+                <span className="label-text">Condition Type</span>
+              </label>
+              <select
+                className="my-3"
+                {...register("conditionType", { required: true })}
+              >
+                <option value="Excellent">Excellent</option>
+                <option value="Good">Good</option>
+                <option value="Fair">Fair</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div className="form-control w-full mb-5">
+              <label className="label">
+                <span className="label-text">Photo</span>
+              </label>
+              <input
+                type="file"
+                {...register("image", {
+                  required: "Name Field Required",
+                })}
+                className="input input-bordered w-2/3 "
+              />
+              {errors.image && (
+                <p className="text-red-600">{errors.image.message}</p>
+              )}
+            </div>
+            <div>
+              <label className="label">
+                <span className="label-text">Description</span>
+              </label>
+              <textarea
+                className="w-full"
+                {...register("description", { required: "Message Needed" })}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full flex justify-center">
+        <input
+          className="btn btn-accent w-1/2 mt-6"
+          type="submit"
+          value="Add Product"
+        />
         </div>
       </form>
     </div>

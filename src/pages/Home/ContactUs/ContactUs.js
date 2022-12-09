@@ -4,9 +4,9 @@ const ContactUs = () => {
     return (
         <div className='my-20'>
             <h2 className='mb-8 text-3xl font-semibold flex justify-center'>Contact With Us</h2>
-            <section className="bg-white dark:bg-gray-900">
+            <section className="bg-gray-800 text-gray-100">
     <div className="container px-4 py-16 mx-auto lg:flex lg:items-center lg:justify-between">
-        <h2 className="text-3xl font-semibold tracking-tight text-gray-800 xl:text-4xl dark:text-white">
+        <h2 className="text-3xl font-semibold tracking-tight text-gray-800 xl:text-4xl dark:text-gray-300">
             For Quick Update, Get In Touch!!!
         </h2>
 
